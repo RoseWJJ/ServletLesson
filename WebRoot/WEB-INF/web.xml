@@ -1,0 +1,161 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<web-app version="2.5" 
+	xmlns="http://java.sun.com/xml/ns/javaee" 
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
+	xsi:schemaLocation="http://java.sun.com/xml/ns/javaee 
+	http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd">
+	
+  <context-param>
+  	<param-name>driverClass</param-name>
+    <param-value>com.mysql.jdbc.Driver</param-value>
+  </context-param>	
+ <!-- 登录作业的servlet -->	
+  <servlet>
+    <servlet-name>LoginServlet</servlet-name>
+    <servlet-class>cn.et.servlet.lesson01.LoginServlet</servlet-class>
+  </servlet>
+
+  <servlet-mapping>
+    <servlet-name>LoginServlet</servlet-name>
+    <url-pattern>/myLogin</url-pattern>
+  </servlet-mapping>
+  
+  
+  <!-- 配置响应信息的servlet -->
+  <servlet>
+  	<servlet-name>ResponseServlet</servlet-name>
+  	<servlet-class>cn.et.servlet.lesson01.ResponseServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+  	<servlet-name>ResponseServlet</servlet-name>
+  	<url-pattern>/resp</url-pattern>
+  </servlet-mapping>
+  
+  <!-- 生命周期servlet -->
+  <servlet>
+    <servlet-name>CycleServlet</servlet-name>
+    <servlet-class>cn.et.servlet.lesson01.CycleServlet</servlet-class>
+    <load-on-startup>12</load-on-startup>
+  </servlet>
+  <servlet>
+    <servlet-name>ContextServlet</servlet-name>
+    <servlet-class>cn.et.servlet.lesson01.ContextServlet</servlet-class>
+    <init-param>
+    	<param-name>hello</param-name>
+    	<param-value>你好</param-value>
+    </init-param>
+  </servlet>
+  <servlet>
+    <servlet-name>ContextServlet1</servlet-name>
+    <servlet-class>cn.et.servlet.lesson01.ContextServlet1</servlet-class>
+  </servlet>
+
+
+  <servlet-mapping>
+    <servlet-name>CycleServlet</servlet-name>
+    <url-pattern>/cycle</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+    <servlet-name>ContextServlet</servlet-name>
+    <url-pattern>/c</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+    <servlet-name>ContextServlet1</servlet-name>
+    <url-pattern>/c1</url-pattern>
+  </servlet-mapping>
+  
+  <!-- 跳转servlet测试 -->
+  <servlet>
+    <servlet-name>MyLoginServlet</servlet-name>
+    <servlet-class>cn.et.servlet.lesson02.MyLoginServlet</servlet-class>
+    <load-on-startup>12</load-on-startup>
+  </servlet>
+  <servlet>
+    <servlet-name>CkServlet</servlet-name>
+    <servlet-class>cn.et.servlet.lesson02.CkServlet</servlet-class>
+  </servlet>
+  <servlet>
+    <servlet-name>UploadServlet</servlet-name>
+    <servlet-class>cn.et.servlet.lesson04.UploadServlet</servlet-class>
+  </servlet>
+  <servlet>
+    <servlet-name>DownloadServlet</servlet-name>
+    <servlet-class>cn.et.servlet.lesson04.DownloadServlet</servlet-class>
+  </servlet>
+  <servlet>
+    <servlet-name>MyShareDownload</servlet-name>
+    <servlet-class>cn.et.servlet.lesson04.MyShareDownload</servlet-class>
+  </servlet>
+  <servlet>
+    <servlet-name>NationServlet</servlet-name>
+    <servlet-class>cn.et.servlet.lesson04.NationServlet</servlet-class>
+  </servlet>
+
+
+
+
+
+  <servlet-mapping>
+    <servlet-name>MyLoginServlet</servlet-name>
+    <url-pattern>/mylog</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+    <servlet-name>CkServlet</servlet-name>
+    <url-pattern>/ck</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+    <servlet-name>UploadServlet</servlet-name>
+    <url-pattern>/upload</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+    <servlet-name>DownloadServlet</servlet-name>
+    <url-pattern>/download</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+    <servlet-name>MyShareDownload</servlet-name>
+    <url-pattern>/share</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+    <servlet-name>NationServlet</servlet-name>
+    <url-pattern>/nation</url-pattern>
+  </servlet-mapping>
+  
+  <!-- 配置过滤器 拦截的拦截顺序 由定义的先后顺序决定 -->
+  <filter>
+  	<filter-name>myFilter</filter-name>
+  	<filter-class>cn.et.servlet.lesson03.MyFilter</filter-class>
+  </filter>
+  <filter-mapping>
+  	<filter-name>myFilter</filter-name>
+  	<!-- 表示拦截资源 -->
+  	<url-pattern>/lesson03/*</url-pattern>
+  </filter-mapping>
+  <filter>
+  	<filter-name>myFilter1</filter-name>
+  	<filter-class>cn.et.servlet.lesson03.MyFilter01</filter-class>
+  </filter>
+  <filter-mapping>
+  	<filter-name>myFilter1</filter-name>
+  	<!-- 表示拦截资源 -->
+  	<url-pattern>/lesson03/*</url-pattern>
+  </filter-mapping>
+  <!-- 注册监听器 -->
+  <listener>
+  	<listener-class>cn.et.servlet.lesson03.RequestCycleListener</listener-class>
+  </listener>
+  <listener>
+  	<listener-class>cn.et.servlet.lesson03.MySessionListener</listener-class>
+  </listener>
+   <listener>
+  	<listener-class>cn.et.servlet.lesson03.MyServletContext</listener-class>
+  </listener>
+   <listener>
+  	<listener-class>cn.et.servlet.lesson03.HttpSessionDataChange</listener-class>
+  </listener>
+  <session-config>
+      <session-timeout>1</session-timeout>
+  </session-config>
+  <welcome-file-list>
+    <welcome-file>index.jsp</welcome-file>
+  </welcome-file-list>
+</web-app>
